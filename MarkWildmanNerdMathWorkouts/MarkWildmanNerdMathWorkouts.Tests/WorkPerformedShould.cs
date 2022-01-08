@@ -38,6 +38,7 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         */
         [Theory]
         [InlineData(16, 5, 5, 150, 2400)]
+        [InlineData(20, 10, 3, 120, 2400)]
         public void Calculate_Correct_WorkCapacity_With_ReverseLadder(int weight, int sets, int rungs, int expectedReps, int expectedWorkCapacity)
         {
             // Arrange
