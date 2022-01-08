@@ -2,6 +2,7 @@
 {
     public enum HeartRateLevel
     {
+        Unknown,
         Light,
         Medium,
         Heavy

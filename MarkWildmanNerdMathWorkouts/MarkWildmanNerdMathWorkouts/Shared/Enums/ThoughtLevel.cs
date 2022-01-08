@@ -2,6 +2,7 @@
 {
     public enum ThoughtLevel
     {
+        Unknown,
         Light,
         Medium,
         Heavy

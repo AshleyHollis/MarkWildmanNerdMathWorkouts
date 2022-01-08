@@ -2,6 +2,7 @@
 {
     public enum WorkoutLevel
     {
+        Unknown,
         Recovery,
         Light,
         Medium,
