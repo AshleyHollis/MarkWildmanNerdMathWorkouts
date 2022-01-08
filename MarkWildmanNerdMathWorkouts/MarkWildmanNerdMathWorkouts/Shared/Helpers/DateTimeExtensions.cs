@@ -22,10 +22,10 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Helpers
 
         public static IReadOnlyList<DateTime> Next(this DateTime from, DateCalculationKind calculationKind, params DayOfWeek[] days)
         {
-            return Next(from, calculationKind, 1, days);
+            return Next(from, calculationKind, days.Length, days);
         }
 
-        public static IReadOnlyList<DateTime> Next(this DateTime from, DateCalculationKind calculationKind, int numberOfDaysRequiredPerDay, params DayOfWeek[] days)
+        public static IReadOnlyList<DateTime> Next(this DateTime from, DateCalculationKind calculationKind, int numberOfDaysRequired, params DayOfWeek[] days)
         {
             if (days == null)
                 return Array.Empty<DateTime>();
@@ -37,8 +37,6 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Helpers
             days = calculationKind == DateCalculationKind.And
                 ? days.Distinct().ToArray()
                 : days;
-
-            var numberOfDaysRequired = numberOfDaysRequiredPerDay * days.Length;
 
             while (results.Count < numberOfDaysRequired)
             {

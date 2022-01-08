@@ -50,9 +50,22 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         }
 
         [Fact]
-        public void Calculate_Correctly_Next_5_Mondays_And_Fridays()
+        public void Calculate_Correctly_Next_5_Days_Of_Mondays_And_Fridays()
         {
             var results = now.Next(DateCalculationKind.AndThen, 5, Monday, Friday);
+
+            Assert.Equal(5, results.Count);
+            Assert.Equal(new DateTime(2021, 1, 4), results[0]);
+            Assert.Equal(new DateTime(2021, 1, 8), results[1]);
+            Assert.Equal(new DateTime(2021, 1, 11), results[2]);
+            Assert.Equal(new DateTime(2021, 1, 15), results[3]);
+            Assert.Equal(new DateTime(2021, 1, 18), results[4]);
+        }
+
+        [Fact]
+        public void Calculate_Correctly_Next_10_Days_Of_Mondays_And_Fridays()
+        {
+            var results = now.Next(DateCalculationKind.AndThen, 10, Monday, Friday);
 
             Assert.Equal(10, results.Count);
             Assert.Equal(new DateTime(2021, 1, 4), results[0]);
