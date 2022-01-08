@@ -14,8 +14,8 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         [InlineData(5, 15)]
         public void Calculate_Correct_RepsPerHand(int rungs,int expected)
         {
-            // Act
             // Arrange
+            // Act
             var reverseLadder = new ReverseLadder(rungs);
 
             // Assert
@@ -30,8 +30,8 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         [InlineData(5, 30)]
         public void Calculate_Correct_TotalReps(int rungs, int expected)
         {
-            // Act
             // Arrange
+            // Act
             var reverseLadder = new ReverseLadder(rungs);
 
             // Assert
