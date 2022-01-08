@@ -5,7 +5,7 @@
         public List<WorkPerformed> WorkPerformed { get; protected set; }
         public int WorkCapacity
         {
-            get { return WorkPerformed.Sum(x => x.Reps * x.Sets * x.Weight); }
+            get { return WorkPerformed.Sum(x => x.WorkCapacity); }
         }
 
         public WorkoutExercise()
