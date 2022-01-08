@@ -38,17 +38,19 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         */
         [Theory]
         [InlineData(16, 5, 5, 150, 2400)]
-        public void Calculate_Correct_WorkCapacity_With_ReverseLadder(int weight, int sets, int rungs, int expectedReps, int expected)
+        public void Calculate_Correct_WorkCapacity_With_ReverseLadder(int weight, int sets, int rungs, int expectedReps, int expectedWorkCapacity)
         {
             // Arrange
             var reverseLadder = new ReverseLadder(rungs);
             var practiceExercise = new WorkoutExercise();
+            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reverseLadder.TotalReps, Weight = weight };
 
             // Act
-            practiceExercise.WorkPerformed.Add(new WorkPerformed() { Sets = sets, Reps = reverseLadder.TotalReps, Weight = weight });
+            practiceExercise.WorkPerformed.Add(workPerformed);
 
             // Assert
-            practiceExercise.WorkCapacity.Should().Be(expected);
+            workPerformed.TotalReps.Should().Be(expectedReps);
+            practiceExercise.WorkCapacity.Should().Be(expectedWorkCapacity);
         }
 
         [Fact]
