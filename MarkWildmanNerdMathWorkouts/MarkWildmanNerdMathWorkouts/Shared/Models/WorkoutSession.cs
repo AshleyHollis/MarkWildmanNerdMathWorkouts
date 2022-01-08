@@ -72,5 +72,10 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 
             return string.Format("{0} - {1}", workoutTypeShortName, workoutLevelShortName);
         }
+
+        public void AddWorkoutExcercise(WorkoutExercise workoutExercise)
+        {
+            WorkoutExercises.Add(workoutExercise);
+        }
     }
 }

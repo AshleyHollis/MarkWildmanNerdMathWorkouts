@@ -2,7 +2,7 @@
 {
     public class WorkoutExercise
     {
-        public List<WorkPerformed> WorkPerformed { get; protected set; }
+        public List<WorkPerformed> WorkPerformed { get; private set; }
         public int WorkCapacity
         {
             get { return WorkPerformed.Sum(x => x.WorkCapacity); }
@@ -11,6 +11,11 @@
         public WorkoutExercise()
         {
             WorkPerformed = new List<WorkPerformed>();
+        }
+
+        public void AddWorkPerformed(WorkPerformed workPerformed)
+        {
+            WorkPerformed.Add(workPerformed);
         }
 
         public string CaculateNextExerciseUsingNewWeight(int currentWorkCapacity, int newWeight, int newRungCount)
