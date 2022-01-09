@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MarkWildmanNerdMathWorkouts.Shared.Enums;
+using MarkWildmanNerdMathWorkouts.Shared.ExcerciseStrategies;
 using MarkWildmanNerdMathWorkouts.Shared.Helpers;
 
 namespace MarkWildmanNerdMathWorkouts.Shared.Models

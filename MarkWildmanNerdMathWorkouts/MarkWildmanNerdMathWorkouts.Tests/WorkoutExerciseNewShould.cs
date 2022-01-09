@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using MarkWildmanNerdMathWorkouts.Shared.Enums;
+using MarkWildmanNerdMathWorkouts.Shared.ExcerciseStrategies;
 using MarkWildmanNerdMathWorkouts.Shared.Models;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,6 @@
-﻿namespace MarkWildmanNerdMathWorkouts.Shared.Models
+﻿using MarkWildmanNerdMathWorkouts.Shared.Models;
+
+namespace MarkWildmanNerdMathWorkouts.Shared.ExcerciseStrategies
 {
     public class RecoveryExcerciseStrategy
     {
