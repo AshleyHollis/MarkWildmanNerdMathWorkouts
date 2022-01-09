@@ -10,11 +10,11 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
     {
         public int Sets { get; set; }
         public int Reps { get; set; }
-        public int Weight { get; set; }
+        public Weight Weight { get; set; }
 
         public int TotalReps => Sets * Reps;
-        public int WorkCapacity => Sets * Reps * Weight;
+        public int WorkCapacity => Sets * Reps * Weight.Mass;
 
-        public override string ToString() => string.Format("{0} {1} {2} {3}", Weight, Sets, Reps, WorkCapacity);
+        public override string ToString() => string.Format("{0} x {1} x {2} = {3}", Weight, Sets, Reps, WorkCapacity);
     }
 }

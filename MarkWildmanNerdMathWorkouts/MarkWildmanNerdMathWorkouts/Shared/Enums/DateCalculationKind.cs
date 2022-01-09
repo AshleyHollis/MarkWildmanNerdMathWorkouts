@@ -1,4 +1,4 @@
-﻿namespace MarkWildmanNerdMathWorkouts.Shared.Helpers
+﻿namespace MarkWildmanNerdMathWorkouts.Shared.Enums
 {
     public enum DateCalculationKind
     {

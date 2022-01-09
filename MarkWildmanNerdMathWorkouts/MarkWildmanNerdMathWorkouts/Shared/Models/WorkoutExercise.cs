@@ -18,9 +18,9 @@
             WorkPerformed.Add(workPerformed);
         }
 
-        public string CaculateNextExerciseUsingNewWeight(int currentWorkCapacity, int newWeight, int newRungCount)
+        public string CaculateNextExerciseUsingNewWeight(int currentWorkCapacity, Weight newWeight, int newRungCount)
         {
-            var reps = currentWorkCapacity / newWeight;
+            var reps = currentWorkCapacity / newWeight.Mass;
             var reverseLadder = new ReverseLadder(newRungCount);
             var newReps = reverseLadder.TotalReps;
             var sets = reps / newReps;

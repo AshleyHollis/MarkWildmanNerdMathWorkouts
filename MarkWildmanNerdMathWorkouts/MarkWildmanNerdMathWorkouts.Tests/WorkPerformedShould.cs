@@ -1,29 +1,30 @@
 ﻿using FluentAssertions;
 using Xunit;
 using MarkWildmanNerdMathWorkouts.Shared.Models;
+using MarkWildmanNerdMathWorkouts.Shared.Enums;
 
 namespace MarkWildmanNerdMathWorkouts.Tests
-{    
+{
     public class WorkPerformedShould
     {
         /*  Is 10 min of Kettlebelling enough - Part II - Yes - Nerd Math
         https://www.youtube.com/watch?v=lcECmuWTL3g 
         */
         [Theory]
-        [InlineData(35, 10, 10, 3500)]
-        [InlineData(35, 10, 15, 5250)]
-        [InlineData(35, 10, 20, 7000)]
-        [InlineData(53, 10, 10, 5300)]
-        [InlineData(53, 10, 15, 7950)]
-        [InlineData(53, 10, 20, 10600)]
-        [InlineData(70, 10, 10, 7000)]
-        [InlineData(70, 10, 15, 10500)]
-        [InlineData(70, 10, 20, 14000)]
-        public void Calculate_Correct_WorkCapacity_With_Single_Set(int weight, int sets, int reps, int expected)
+        [InlineData(35, WeightUnit.Pounds, 10, 10, 3500)]
+        [InlineData(35, WeightUnit.Pounds, 10, 15, 5250)]
+        [InlineData(35, WeightUnit.Pounds, 10, 20, 7000)]
+        [InlineData(53, WeightUnit.Pounds, 10, 10, 5300)]
+        [InlineData(53, WeightUnit.Pounds, 10, 15, 7950)]
+        [InlineData(53, WeightUnit.Pounds, 10, 20, 10600)]
+        [InlineData(70, WeightUnit.Pounds, 10, 10, 7000)]
+        [InlineData(70, WeightUnit.Pounds, 10, 15, 10500)]
+        [InlineData(70, WeightUnit.Pounds, 10, 20, 14000)]
+        public void Calculate_Correct_WorkCapacity_With_Single_Set(int weight, WeightUnit weightUnit, int sets, int reps, int expected)
         {
             // Arrange
             var practiceExercise = new WorkoutExercise();
-            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reps, Weight = weight };
+            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reps, Weight = new Weight(weight, weightUnit) };
 
             // Act
             practiceExercise.WorkPerformed.Add(workPerformed);
@@ -37,14 +38,14 @@ namespace MarkWildmanNerdMathWorkouts.Tests
             https://www.youtube.com/watch?v=xzNqgTOPKXc
         */
         [Theory]
-        [InlineData(16, 5, 5, 150, 2400)]
-        [InlineData(20, 10, 3, 120, 2400)]
-        public void Calculate_Correct_WorkCapacity_With_ReverseLadder(int weight, int sets, int rungs, int expectedReps, int expectedWorkCapacity)
+        [InlineData(16, WeightUnit.Pounds, 5, 5, 150, 2400)]
+        [InlineData(20, WeightUnit.Pounds, 10, 3, 120, 2400)]
+        public void Calculate_Correct_WorkCapacity_With_ReverseLadder(int weight, WeightUnit weightUnit, int sets, int rungs, int expectedReps, int expectedWorkCapacity)
         {
             // Arrange
             var reverseLadder = new ReverseLadder(rungs);
             var practiceExercise = new WorkoutExercise();
-            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reverseLadder.TotalReps, Weight = weight };
+            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reverseLadder.TotalReps, Weight = new Weight(weight, weightUnit) };
 
             // Act
             practiceExercise.WorkPerformed.Add(workPerformed);
@@ -61,8 +62,8 @@ namespace MarkWildmanNerdMathWorkouts.Tests
             var practiceExercise = new WorkoutExercise();
 
             // Act
-            practiceExercise.WorkPerformed.Add(new WorkPerformed() { Sets = 2, Reps = 10, Weight = 53 });
-            practiceExercise.WorkPerformed.Add(new WorkPerformed() { Sets = 8, Reps = 10, Weight = 35 });
+            practiceExercise.WorkPerformed.Add(new WorkPerformed() { Sets = 2, Reps = 10, Weight = new Weight(53, WeightUnit.Pounds) });
+            practiceExercise.WorkPerformed.Add(new WorkPerformed() { Sets = 8, Reps = 10, Weight = new Weight(35, WeightUnit.Pounds) });
 
             // Assert
             practiceExercise.WorkCapacity.Should().Be(3860);

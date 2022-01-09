@@ -9,11 +9,11 @@ namespace MarkWildmanNerdMathWorkouts.Shared
 {
     public class KettleBellSwings10SetsX20RepsStrategy
     {
-        private int startWeight;
-        private int targetWeight;
-        private List<int> availableWeights;
+        private Weight startWeight;
+        private Weight targetWeight;
+        private List<Weight> availableWeights;
 
-        public KettleBellSwings10SetsX20RepsStrategy(int startWeight, int targetWeight, List<int> availableWeights)
+        public KettleBellSwings10SetsX20RepsStrategy(Weight startWeight, Weight targetWeight, List<Weight> availableWeights)
         {
             this.startWeight = startWeight;
             this.targetWeight = targetWeight;
@@ -22,7 +22,7 @@ namespace MarkWildmanNerdMathWorkouts.Shared
 
         public List<WorkPerformed> Generate()
         {
-            var useableWeights = availableWeights.Where(x => x >= startWeight && x <= targetWeight).ToList();
+            var useableWeights = availableWeights.Where(x => x.Mass >= startWeight.Mass && x.Mass <= targetWeight.Mass).ToList();
             var workouts = new List<WorkPerformed>();
 
             foreach (var weight in useableWeights)

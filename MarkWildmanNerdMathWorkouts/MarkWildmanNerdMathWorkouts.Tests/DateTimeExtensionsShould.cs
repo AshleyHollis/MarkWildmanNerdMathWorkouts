@@ -2,6 +2,7 @@
 using Xunit;
 using static System.DayOfWeek;
 using MarkWildmanNerdMathWorkouts.Shared.Helpers;
+using MarkWildmanNerdMathWorkouts.Shared.Enums;
 
 namespace MarkWildmanNerdMathWorkouts.Tests
 {
