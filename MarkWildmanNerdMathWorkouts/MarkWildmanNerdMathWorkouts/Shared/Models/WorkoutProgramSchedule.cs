@@ -50,7 +50,7 @@
                 }
             }
 
-            return flattenedExcercises.OrderBy(a => a.WorkoutDays.SingleOrDefault()).ThenBy(a => a.Order).ToList();
+            return flattenedExcercises.OrderBy(a => a.WorkoutDays.SingleOrDefault()?.DayOfWeek).ThenBy(a => a.WorkoutDays.SingleOrDefault()?.Order).ToList();
         }
     }
 }

@@ -7,9 +7,9 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
         public readonly string Code;
         public readonly string Name;
         public List<WorkoutExerciseNew> Excercises;
-        public readonly List<DayOfWeek> WorkoutDays;
+        public readonly List<WorkoutDayOfWeek> WorkoutDays;
 
-        public WorkoutProgram(string code, string name, List<DayOfWeek> workoutDays)
+        public WorkoutProgram(string code, string name, List<WorkoutDayOfWeek> workoutDays)
         {
             Excercises = new List<WorkoutExerciseNew>();
 
@@ -18,13 +18,13 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             WorkoutDays = workoutDays;
         }
 
-        public WorkoutProgram(WorkoutProgram program, DayOfWeek workoutDay)
+        public WorkoutProgram(WorkoutProgram program, WorkoutDayOfWeek workoutDay)
         {
             Excercises = new List<WorkoutExerciseNew>();
 
             Code = program.Code;
             Name = program.Name;
-            WorkoutDays = new List<DayOfWeek> { workoutDay };
+            WorkoutDays = new List<WorkoutDayOfWeek> { workoutDay };
         }
 
         public void AddExcercise(WorkoutExerciseNew excercise)
@@ -37,7 +37,7 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             var output = string.Empty;
 
             var flattenedWorkouts = FlattenWorkoutProgramsByDay();
-            var programOutput = string.Join(Environment.NewLine, flattenedWorkouts.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().ToShortString(), a.Code, a.Name)));
+            var programOutput = string.Join(Environment.NewLine, flattenedWorkouts.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().DayOfWeek.ToShortString(), a.Code, a.Name)));
 
             return programOutput;
         }

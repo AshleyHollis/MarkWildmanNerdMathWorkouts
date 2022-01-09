@@ -8,38 +8,34 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
     public class WorkoutExerciseNew
     {
         private string Name;
-        public readonly List<DayOfWeek> WorkoutDays;
+        public readonly List<WorkoutDayOfWeek> WorkoutDays;
         private WeightLevel WeightLevel;
-        public readonly int Order;
 
-        public WorkoutExerciseNew(string name, List<DayOfWeek> workoutDays, int order)
+        public WorkoutExerciseNew(string name, List<WorkoutDayOfWeek> workoutDays)
         {
             Name = name;
             WorkoutDays = workoutDays;
-            Order = order;
         }
 
-        public WorkoutExerciseNew(WorkoutExerciseNew workoutExercise, DayOfWeek day)
+        public WorkoutExerciseNew(WorkoutExerciseNew workoutExercise, WorkoutDayOfWeek day)
         {
             Name = workoutExercise.Name;
-            WorkoutDays = new List<DayOfWeek> { day };
+            WorkoutDays = new List<WorkoutDayOfWeek> { day };
             WeightLevel = workoutExercise.WeightLevel;
-            Order = workoutExercise.Order;
         }
 
-        public WorkoutExerciseNew(string name, List<DayOfWeek> workoutDays, int order, WeightLevel weightLevel = WeightLevel.Unknown)
+        public WorkoutExerciseNew(string name, List<WorkoutDayOfWeek> workoutDays, WeightLevel weightLevel = WeightLevel.Unknown)
         {
             Name = name;
             WorkoutDays = workoutDays;
             WeightLevel = weightLevel;
-            Order = order;
         }
 
         public override string ToString()
         {
             var flattenedExcercises = FlattenByDay();
 
-            return string.Join(Environment.NewLine, flattenedExcercises.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().ToShortString(), a.Name, a.WeightLevel.ToShortString())));
+            return string.Join(Environment.NewLine, flattenedExcercises.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().DayOfWeek.ToShortString(), a.Name, a.WorkoutDays.Single().WeightLevel.ToShortString())));
         }
 
         private List<WorkoutExerciseNew> FlattenByDay()

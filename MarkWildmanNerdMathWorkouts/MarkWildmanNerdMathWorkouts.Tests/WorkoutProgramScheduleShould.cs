@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
 using MarkWildmanNerdMathWorkouts.Shared.Enums;
+using MarkWildmanNerdMathWorkouts.Shared.Helpers;
 using MarkWildmanNerdMathWorkouts.Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace MarkWildmanNerdMathWorkouts.Tests
@@ -16,21 +18,21 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         [Fact]
         public void Correctly_Output_Logans_ABC_ProgramSchedule_And_Excercises()
         {
-            var workoutProgramA = new WorkoutProgram("A", "Kettlebells", new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Thursday });
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean & Press", workoutProgramA.WorkoutDays, 1));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", workoutProgramA.WorkoutDays, 2));
+            var workoutProgramA = new WorkoutProgram("A", "Kettlebells", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 1), new WorkoutDayOfWeek(DayOfWeek.Thursday, 1) });
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean & Press", workoutProgramA.WorkoutDays.CloneWithNewOrder(1)));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", workoutProgramA.WorkoutDays.CloneWithNewOrder(2)));
 
-            var workoutProgramB = new WorkoutProgram("B", "Mill/Squat", new List<DayOfWeek> { DayOfWeek.Tuesday, DayOfWeek.Friday });
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Sheild Cast", workoutProgramB.WorkoutDays, 1));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squat", workoutProgramB.WorkoutDays, 2));
+            var workoutProgramB = new WorkoutProgram("B", "Mill/Squat", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 1), new WorkoutDayOfWeek(DayOfWeek.Friday, 1) });
+            workoutProgramB.AddExcercise(new WorkoutExerciseNew("Sheild Cast", workoutProgramB.WorkoutDays.CloneWithNewOrder(1)));
+            workoutProgramB.AddExcercise(new WorkoutExerciseNew("Squat", workoutProgramB.WorkoutDays.CloneWithNewOrder(2)));
 
-            var workoutProgramC = new WorkoutProgram("B", "SA Club", new List<DayOfWeek> { DayOfWeek.Wednesday, DayOfWeek.Saturday });
-            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Sheild Cast", workoutProgramC.WorkoutDays, 1));
-            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Balance", workoutProgramC.WorkoutDays, 2));
-            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Spike", workoutProgramC.WorkoutDays, 3));
+            var workoutProgramC = new WorkoutProgram("B", "SA Club", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Wednesday, 1), new WorkoutDayOfWeek(DayOfWeek.Saturday, 1) });
+            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Sheild Cast", workoutProgramC.WorkoutDays.CloneWithNewOrder(1)));
+            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Balance", workoutProgramC.WorkoutDays.CloneWithNewOrder(2)));
+            workoutProgramC.AddExcercise(new WorkoutExerciseNew("Spike", workoutProgramC.WorkoutDays.CloneWithNewOrder(3)));
 
-            var workoutProgramRec = new WorkoutProgram("REC", "Recovery", new List<DayOfWeek> { DayOfWeek.Sunday });
-            workoutProgramRec.AddExcercise(new WorkoutExerciseNew("Recovery", workoutProgramRec.WorkoutDays, 1));
+            var workoutProgramRec = new WorkoutProgram("REC", "Recovery", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Sunday, 1) });
+            workoutProgramRec.AddExcercise(new WorkoutExerciseNew("Recovery", workoutProgramRec.WorkoutDays.CloneWithNewOrder(1)));
 
             var workoutProgramSchedule = new WorkoutProgramSchedule();
             workoutProgramSchedule.AddProgram(workoutProgramA);
@@ -68,19 +70,19 @@ Sat|Spike||";
         [Fact]
         public void Correctly_Output_Kettlebell_Basic_A_ProgramSchedule_And_Excercises()
         {
-            var workoutProgramA = new WorkoutProgram("A", "Kettlebell Basic", new List<DayOfWeek> { DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday,DayOfWeek.Friday, DayOfWeek.Saturday });
-            
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Warmup", new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Friday }, 1));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Cooldown", new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Thursday, DayOfWeek.Friday }, 4));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<DayOfWeek> { DayOfWeek.Monday }, 2, WeightLevel.Light));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<DayOfWeek> { DayOfWeek.Monday }, 3, WeightLevel.Heavy));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<DayOfWeek> { DayOfWeek.Tuesday }, 2, WeightLevel.Heavy));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<DayOfWeek> { DayOfWeek.Tuesday }, 3, WeightLevel.Light));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<DayOfWeek> { DayOfWeek.Thursday }, 2, WeightLevel.Heavy));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<DayOfWeek> { DayOfWeek.Thursday }, 3, WeightLevel.Light));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<DayOfWeek> { DayOfWeek.Friday }, 2, WeightLevel.Heavy));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<DayOfWeek> { DayOfWeek.Friday }, 3, WeightLevel.Light));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Recovery", new List<DayOfWeek> { DayOfWeek.Sunday, DayOfWeek.Wednesday, DayOfWeek.Saturday }, 1));
+            var workoutProgramA = new WorkoutProgram("A", "Kettlebell Basic", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Sunday, 1), new WorkoutDayOfWeek(DayOfWeek.Monday, 1), new WorkoutDayOfWeek(DayOfWeek.Tuesday, 1), new WorkoutDayOfWeek(DayOfWeek.Wednesday, 1), new WorkoutDayOfWeek(DayOfWeek.Thursday, 1), new WorkoutDayOfWeek(DayOfWeek.Friday, 1), new WorkoutDayOfWeek(DayOfWeek.Saturday, 1) });
+
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Warmup", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 1), new WorkoutDayOfWeek(DayOfWeek.Tuesday, 1), new WorkoutDayOfWeek(DayOfWeek.Thursday, 1), new WorkoutDayOfWeek(DayOfWeek.Friday, 1) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Cooldown", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 4), new WorkoutDayOfWeek(DayOfWeek.Tuesday, 4), new WorkoutDayOfWeek(DayOfWeek.Thursday, 4), new WorkoutDayOfWeek(DayOfWeek.Friday, 4) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 3, WeightLevel.Heavy) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 2, WeightLevel.Heavy) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Thursday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Friday, 2, WeightLevel.Heavy) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Friday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Recovery", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Sunday, 1), new WorkoutDayOfWeek(DayOfWeek.Wednesday, 1), new WorkoutDayOfWeek(DayOfWeek.Saturday, 1) }));
 
             var workoutProgramSchedule = new WorkoutProgramSchedule();
             workoutProgramSchedule.AddProgram(workoutProgramA);
