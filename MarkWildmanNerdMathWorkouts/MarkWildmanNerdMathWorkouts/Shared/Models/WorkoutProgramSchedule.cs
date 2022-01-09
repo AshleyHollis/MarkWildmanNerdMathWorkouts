@@ -16,8 +16,12 @@
         public override string ToString()
         {
             var programsSortedByDay = FlattenWorkoutProgramsByDay();
+            var programOutput = string.Join(Environment.NewLine, programsSortedByDay);
 
-            return string.Join(Environment.NewLine, programsSortedByDay);
+            var excercisesSortedByDay = FlattenWorkoutExcercisesByDay();
+            var excercisesOutput = string.Join(Environment.NewLine, excercisesSortedByDay);
+
+            return $"{programOutput}{Environment.NewLine}{Environment.NewLine}{excercisesOutput}";
         }
 
         private List<WorkoutProgram> FlattenWorkoutProgramsByDay()
@@ -32,6 +36,21 @@
             }
 
             return flattenedPrograms.OrderBy(a => a.WorkoutDays.SingleOrDefault()).ToList();
+        }
+
+        private List<WorkoutExerciseNew> FlattenWorkoutExcercisesByDay()
+        {
+            var excercises = Programs.SelectMany(a => a.Excercises).ToList();
+            var flattenedExcercises = new List<WorkoutExerciseNew>();
+            foreach (var excercise in excercises)
+            {
+                foreach (var day in excercise.WorkoutDays)
+                {
+                    flattenedExcercises.Add(new WorkoutExerciseNew(excercise, day));
+                }
+            }
+
+            return flattenedExcercises.OrderBy(a => a.WorkoutDays.SingleOrDefault()).ThenBy(a => a.Order).ToList();
         }
     }
 }

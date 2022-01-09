@@ -6,12 +6,12 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
     {
         public readonly string Code;
         public readonly string Name;
-        public List<string> Excercises;
+        public List<WorkoutExerciseNew> Excercises;
         public readonly List<DayOfWeek> WorkoutDays;
 
         public WorkoutProgram(string code, string name, List<DayOfWeek> workoutDays)
         {
-            Excercises = new List<string>();
+            Excercises = new List<WorkoutExerciseNew>();
 
             Code = code;
             Name = name;
@@ -20,23 +20,26 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 
         public WorkoutProgram(WorkoutProgram program, DayOfWeek workoutDay)
         {
-            Excercises = new List<string>();
+            Excercises = new List<WorkoutExerciseNew>();
 
             Code = program.Code;
             Name = program.Name;
             WorkoutDays = new List<DayOfWeek> { workoutDay };
         }
 
-        public void AddExcercise(string excercise)
+        public void AddExcercise(WorkoutExerciseNew excercise)
         {
             Excercises.Add(excercise);
         }
 
         public override string ToString()
         {
-            var flattenedWorkouts = FlattenWorkoutProgramsByDay();
+            var output = string.Empty;
 
-            return string.Join(Environment.NewLine, flattenedWorkouts.Select(a => string.Format("{0}|{1}|{2}", a.WorkoutDays.Single().ToShortString(), a.Code, a.Name)));
+            var flattenedWorkouts = FlattenWorkoutProgramsByDay();
+            var programOutput = string.Join(Environment.NewLine, flattenedWorkouts.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().ToShortString(), a.Code, a.Name)));
+
+            return programOutput;
         }
 
         private List<WorkoutProgram> FlattenWorkoutProgramsByDay()
