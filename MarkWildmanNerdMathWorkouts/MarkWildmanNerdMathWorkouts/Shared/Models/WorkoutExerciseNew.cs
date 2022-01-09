@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MarkWildmanNerdMathWorkouts.Shared.Enums;
 using MarkWildmanNerdMathWorkouts.Shared.Helpers;
 
@@ -7,7 +8,7 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 {
     public class WorkoutExerciseNew
     {
-        private string Name;
+        public readonly string Name;
         public readonly List<WorkoutDayOfWeek> WorkoutDays;
         private WeightLevel WeightLevel;
 
@@ -22,6 +23,22 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             Name = workoutExercise.Name;
             WorkoutDays = new List<WorkoutDayOfWeek> { day };
             WeightLevel = workoutExercise.WeightLevel;
+        }
+
+        public List<string> GenerateWorkoutSchedule(RecoveryExcerciseStrategy recoveryExcerciseStrategy)
+        {
+            var now = new DateTime(2021, 1, 1);
+            const int numberOfWorkoutIncrementsToGenerate = 14;
+
+            var workoutIncrements = recoveryExcerciseStrategy.GenerateWorkoutIncrements(numberOfWorkoutIncrementsToGenerate);
+            var workoutDates = now.Next(DateCalculationKind.AndThen, numberOfWorkoutIncrementsToGenerate, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
+
+            var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
+            {
+                return $"{wd.ToShortDateString()}|{wi}|";
+            }).ToList();
+
+            return workoutSchedules;
         }
 
         public WorkoutExerciseNew(string name, List<WorkoutDayOfWeek> workoutDays, WeightLevel weightLevel = WeightLevel.Unknown)
