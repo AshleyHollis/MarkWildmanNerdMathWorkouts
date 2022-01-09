@@ -29,6 +29,11 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 
         public void AddExcercise(WorkoutExerciseNew excercise)
         {
+            if (Excercises.Any(a => a.Name.Equals(excercise.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                throw new InvalidOperationException("Cannot add excercise with same name. Try adding additional workout days instead.");
+            }
+
             Excercises.Add(excercise);
         }
 

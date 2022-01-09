@@ -4,7 +4,6 @@ using MarkWildmanNerdMathWorkouts.Shared.Helpers;
 using MarkWildmanNerdMathWorkouts.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace MarkWildmanNerdMathWorkouts.Tests
@@ -74,14 +73,10 @@ Sat|Spike||";
 
             workoutProgramA.AddExcercise(new WorkoutExerciseNew("Warmup", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 1), new WorkoutDayOfWeek(DayOfWeek.Tuesday, 1), new WorkoutDayOfWeek(DayOfWeek.Thursday, 1), new WorkoutDayOfWeek(DayOfWeek.Friday, 1) }));
             workoutProgramA.AddExcercise(new WorkoutExerciseNew("Cooldown", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 4), new WorkoutDayOfWeek(DayOfWeek.Tuesday, 4), new WorkoutDayOfWeek(DayOfWeek.Thursday, 4), new WorkoutDayOfWeek(DayOfWeek.Friday, 4) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 3, WeightLevel.Heavy) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 2, WeightLevel.Heavy) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 3, WeightLevel.Light) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Thursday, 3, WeightLevel.Light) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Friday, 2, WeightLevel.Heavy) }));
-            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Friday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 3, WeightLevel.Heavy), new WorkoutDayOfWeek(DayOfWeek.Friday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Turkish Get Ups", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 2, WeightLevel.Heavy), new WorkoutDayOfWeek(DayOfWeek.Thursday, 3, WeightLevel.Light) }));
+            workoutProgramA.AddExcercise(new WorkoutExerciseNew("Squats", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Tuesday, 3, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Friday, 2, WeightLevel.Heavy) }));            
             workoutProgramA.AddExcercise(new WorkoutExerciseNew("Recovery", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Sunday, 1), new WorkoutDayOfWeek(DayOfWeek.Wednesday, 1), new WorkoutDayOfWeek(DayOfWeek.Saturday, 1) }));
 
             var workoutProgramSchedule = new WorkoutProgramSchedule();
