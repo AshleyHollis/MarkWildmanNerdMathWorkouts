@@ -105,5 +105,24 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 
             return workoutSchedules;
         }
+
+        public List<string> GenerateWorkoutSchedule(TenMinutesTimeUnderTensionThenIncreaseWeightExcerciseStrategy excerciseStrategy)
+        {
+            var now = new DateTime(2021, 1, 1);
+
+            var startWeight = new Weight(35, WeightUnit.Pounds);
+            var targetWeight = new Weight(70, WeightUnit.Pounds);
+            var availableWeights = new List<Weight> { new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) };
+
+            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(startWeight, targetWeight, availableWeights);
+            var workoutDates = now.Next(DateCalculationKind.AndThen, workoutIncrements.Count, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
+
+            var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
+            {
+                return $"{wd.ToString("dd/MM/yyyy")}|{wi}|";
+            }).ToList();
+
+            return workoutSchedules;
+        }
     }
 }

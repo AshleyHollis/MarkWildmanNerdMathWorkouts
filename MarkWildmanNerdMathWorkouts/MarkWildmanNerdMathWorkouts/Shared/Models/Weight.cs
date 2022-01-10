@@ -8,6 +8,8 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
         public int Mass { get; }
         public WeightUnit Unit { get; }
 
+        public static Weight Default => new Weight(0, WeightUnit.Unknown);
+
         public Weight(int mass, WeightUnit unit)
         {
             Mass = mass;
@@ -16,7 +18,7 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
 
         public override string ToString()
         {
-            return string.Format("{0}{1}", Mass, Unit.ToShortHandString());
-        }
+            return string.Format("{0} {1}", Mass, Unit.ToShortHandString());
+        }        
     }
 }

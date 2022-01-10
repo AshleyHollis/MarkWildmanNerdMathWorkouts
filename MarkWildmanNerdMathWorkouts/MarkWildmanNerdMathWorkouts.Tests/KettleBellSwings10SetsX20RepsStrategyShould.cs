@@ -18,39 +18,39 @@ namespace MarkWildmanNerdMathWorkouts.Tests
             var allData = new List<object[]>
             {
                 new object[] { new Weight(35, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds), new List<Weight>{ new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) }, string.Join(Environment.NewLine, new List<string> { 
-                        "35lbs x 10 x 10 = 3500",
-                        "35lbs x 10 x 11 = 3850",
-                        "35lbs x 10 x 12 = 4200",
-                        "35lbs x 10 x 13 = 4550",
-                        "35lbs x 10 x 14 = 4900",
-                        "35lbs x 10 x 15 = 5250",
-                        "35lbs x 10 x 16 = 5600",
-                        "35lbs x 10 x 17 = 5950",
-                        "35lbs x 10 x 18 = 6300",
-                        "35lbs x 10 x 19 = 6650",
-                        "35lbs x 10 x 20 = 7000",
-                        "53lbs x 10 x 10 = 5300",
-                        "53lbs x 10 x 11 = 5830",
-                        "53lbs x 10 x 12 = 6360",
-                        "53lbs x 10 x 13 = 6890",
-                        "53lbs x 10 x 14 = 7420",
-                        "53lbs x 10 x 15 = 7950",
-                        "53lbs x 10 x 16 = 8480",
-                        "53lbs x 10 x 17 = 9010",
-                        "53lbs x 10 x 18 = 9540",
-                        "53lbs x 10 x 19 = 10070",
-                        "53lbs x 10 x 20 = 10600",
-                        "70lbs x 10 x 10 = 7000",
-                        "70lbs x 10 x 11 = 7700",
-                        "70lbs x 10 x 12 = 8400",
-                        "70lbs x 10 x 13 = 9100",
-                        "70lbs x 10 x 14 = 9800",
-                        "70lbs x 10 x 15 = 10500",
-                        "70lbs x 10 x 16 = 11200",
-                        "70lbs x 10 x 17 = 11900",
-                        "70lbs x 10 x 18 = 12600",
-                        "70lbs x 10 x 19 = 13300",
-                        "70lbs x 10 x 20 = 14000"
+                        "35 lbs x 10 x 10 = 3500",
+                        "35 lbs x 10 x 11 = 3850",
+                        "35 lbs x 10 x 12 = 4200",
+                        "35 lbs x 10 x 13 = 4550",
+                        "35 lbs x 10 x 14 = 4900",
+                        "35 lbs x 10 x 15 = 5250",
+                        "35 lbs x 10 x 16 = 5600",
+                        "35 lbs x 10 x 17 = 5950",
+                        "35 lbs x 10 x 18 = 6300",
+                        "35 lbs x 10 x 19 = 6650",
+                        "35 lbs x 10 x 20 = 7000",
+                        "53 lbs x 10 x 10 = 5300",
+                        "53 lbs x 10 x 11 = 5830",
+                        "53 lbs x 10 x 12 = 6360",
+                        "53 lbs x 10 x 13 = 6890",
+                        "53 lbs x 10 x 14 = 7420",
+                        "53 lbs x 10 x 15 = 7950",
+                        "53 lbs x 10 x 16 = 8480",
+                        "53 lbs x 10 x 17 = 9010",
+                        "53 lbs x 10 x 18 = 9540",
+                        "53 lbs x 10 x 19 = 10070",
+                        "53 lbs x 10 x 20 = 10600",
+                        "70 lbs x 10 x 10 = 7000",
+                        "70 lbs x 10 x 11 = 7700",
+                        "70 lbs x 10 x 12 = 8400",
+                        "70 lbs x 10 x 13 = 9100",
+                        "70 lbs x 10 x 14 = 9800",
+                        "70 lbs x 10 x 15 = 10500",
+                        "70 lbs x 10 x 16 = 11200",
+                        "70 lbs x 10 x 17 = 11900",
+                        "70 lbs x 10 x 18 = 12600",
+                        "70 lbs x 10 x 19 = 13300",
+                        "70 lbs x 10 x 20 = 14000"
                     }
                 )}
             };
@@ -67,15 +67,15 @@ namespace MarkWildmanNerdMathWorkouts.Tests
                
                 Expectation:
                 Format: Weight x Sets x Reps = Work Capacity
-                35 x 10 x 10 = 3500
-                35 x 10 x 15 = 5250
-                35 x 10 x 20 = 7000
-                53 x 10 x 10 = 5300
-                53 x 10 x 15 = 7950
-                53 x 10 x 20 = 10600
-                70 x 10 x 10 = 7000
-                70 x 10 x 15 = 10500
-                70 x 10 x 20 = 14000
+                35 lbs x 10 x 10 = 3500
+                35 lbs x 10 x 15 = 5250
+                35 lbs x 10 x 20 = 7000
+                53 lbs x 10 x 10 = 5300
+                53 lbs x 10 x 15 = 7950
+                53 lbs x 10 x 20 = 10600
+                70 lbs x 10 x 10 = 7000
+                70 lbs x 10 x 15 = 10500
+                70 lbs x 10 x 20 = 14000
 
                 Is 10 min of Kettlebelling enough - Part II - Yes - Nerd Math
                 https://www.youtube.com/watch?v=lcECmuWTL3g
@@ -95,15 +95,15 @@ namespace MarkWildmanNerdMathWorkouts.Tests
                
                 Expectation:
                 Format: Weight x Sets x Reps = Work Capacity
-                35 x 10 x 10 = 3500
-                35 x 10 x 15 = 5250
-                35 x 10 x 20 = 7000
-                53 x 10 x 10 = 5300
-                53 x 10 x 15 = 7950
-                53 x 10 x 20 = 10600
-                70 x 10 x 10 = 7000
-                70 x 10 x 15 = 10500
-                70 x 10 x 20 = 14000
+                35 lbs x 10 x 10 = 3500
+                35 lbs x 10 x 15 = 5250
+                35 lbs x 10 x 20 = 7000
+                53 lbs x 10 x 10 = 5300
+                53 lbs x 10 x 15 = 7950
+                53 lbs x 10 x 20 = 10600
+                70 lbs x 10 x 10 = 7000
+                70 lbs x 10 x 15 = 10500
+                70 lbs x 10 x 20 = 14000
 
                 Is 10 min of Kettlebelling enough - Part II - Yes - Nerd Math
                 https://www.youtube.com/watch?v=lcECmuWTL3g
