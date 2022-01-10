@@ -34,6 +34,24 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             WeightLevel = weightLevel;
         }
 
+        private List<WorkoutExerciseNew> FlattenByDay()
+        {
+            var flattenedExcercises = new List<WorkoutExerciseNew>();
+            foreach (var day in WorkoutDays)
+            {
+                flattenedExcercises.Add(new WorkoutExerciseNew(this, day));
+            }
+
+            return flattenedExcercises;
+        }
+
+        public override string ToString()
+        {
+            var flattenedExcercises = FlattenByDay();
+
+            return string.Join(Environment.NewLine, flattenedExcercises.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().DayOfWeek.ToShortString(), a.Name, a.WorkoutDays.Single().WeightLevel.ToShortString())));
+        }
+
         public List<string> GenerateWorkoutSchedule(RecoveryExcerciseStrategy excerciseStrategy)
         {
             var now = new DateTime(2021, 1, 1);
@@ -54,7 +72,11 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
         {
             var now = new DateTime(2021, 1, 1);
 
-            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(new Weight(35, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds), new List<Weight> { new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) });
+            var startWeight = new Weight(35, WeightUnit.Pounds);
+            var targetWeight = new Weight(70, WeightUnit.Pounds);
+            var availableWeights = new List<Weight> { new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) };
+            
+            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(startWeight, targetWeight, availableWeights);
             var workoutDates = now.Next(DateCalculationKind.AndThen, workoutIncrements.Count, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
 
             var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
@@ -65,22 +87,23 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             return workoutSchedules;
         }
 
-        public override string ToString()
+        public List<string> GenerateWorkoutSchedule(ThreeToFiveRungsThenIncreaseSetsToFiveThenIncreaseWeightReverseLaddersExcerciseStrategy excerciseStrategy)
         {
-            var flattenedExcercises = FlattenByDay();
+            var now = new DateTime(2021, 1, 1);
 
-            return string.Join(Environment.NewLine, flattenedExcercises.Select(a => string.Format("{0}|{1}|{2}|", a.WorkoutDays.Single().DayOfWeek.ToShortString(), a.Name, a.WorkoutDays.Single().WeightLevel.ToShortString())));
-        }
+            var startWeight = new Weight(35, WeightUnit.Pounds);
+            var targetWeight = new Weight(70, WeightUnit.Pounds);
+            var availableWeights = new List<Weight> { new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) };
 
-        private List<WorkoutExerciseNew> FlattenByDay()
-        {
-            var flattenedExcercises = new List<WorkoutExerciseNew>();
-            foreach (var day in WorkoutDays)
+            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(startWeight, targetWeight, availableWeights);
+            var workoutDates = now.Next(DateCalculationKind.AndThen, workoutIncrements.Count, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
+
+            var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
             {
-                flattenedExcercises.Add(new WorkoutExerciseNew(this, day));
-            }
+                return $"{wd.ToString("dd/MM/yyyy")}|{wi}|";
+            }).ToList();
 
-            return flattenedExcercises;
+            return workoutSchedules;
         }
     }
 }

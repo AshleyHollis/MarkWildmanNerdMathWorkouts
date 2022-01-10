@@ -1,11 +1,11 @@
 ﻿namespace MarkWildmanNerdMathWorkouts.Shared.Models
 {
-    public class WorkoutIncrement
+    public record WorkoutIncrement
     {
         private string Title = "";
-        private Weight Weight = new Weight(0, Enums.WeightUnit.Unknown);
-        private int Reps;
-        private int Sets;
+        public readonly Weight Weight = new Weight(0, Enums.WeightUnit.Unknown);
+        public readonly int Reps;
+        public readonly int Sets;
 
         public int TotalReps => Sets * Reps;
         public int WorkCapacity => Sets * Reps * Weight.Mass;
