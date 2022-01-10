@@ -83,7 +83,7 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         [Fact]
         public void Correctly_Generate_Workout_Schedule_For_Kettlebell_Clean_And_Press_3To5Rungs_ThenIncreaseSetsTo5_ThenIncreaseWeight_Excercise()
         {
-            var workoutExcercise = new WorkoutExerciseNew("Reverse Turkish Get Up", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) });
+            var workoutExcercise = new WorkoutExerciseNew("Clean and Press", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) });
             var test = workoutExcercise.GenerateWorkoutSchedule(new ThreeToFiveRungsThenIncreaseSetsToFiveThenIncreaseWeightReverseLaddersExcerciseStrategy());
 
             const string expected = @"04/01/2021|35 lbs X 1 X 3 = 105 lbs|
@@ -138,7 +138,7 @@ namespace MarkWildmanNerdMathWorkouts.Tests
         [Fact]
         public void Correctly_Generate_Workout_Schedule_For_Kettlebell_ReverseTurkishGetUp_10MinsTimeUnderTension_ThenIncreaseWeight_Excercise()
         {
-            var workoutExcercise = new WorkoutExerciseNew("Swings", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) });
+            var workoutExcercise = new WorkoutExerciseNew("Reverse Turkish Get Up", new List<WorkoutDayOfWeek> { new WorkoutDayOfWeek(DayOfWeek.Monday, 2, WeightLevel.Light), new WorkoutDayOfWeek(DayOfWeek.Thursday, 2, WeightLevel.Heavy) });
             var test = workoutExcercise.GenerateWorkoutSchedule(new TenMinutesTimeUnderTensionThenIncreaseWeightExcerciseStrategy());
 
             const string expected = @"04/01/2021|35 lbs X 1 X 00:01:00 = 00:01:00|
