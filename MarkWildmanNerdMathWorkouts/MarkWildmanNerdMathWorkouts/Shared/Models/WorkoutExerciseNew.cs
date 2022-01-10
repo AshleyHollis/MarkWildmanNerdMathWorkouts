@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using MarkWildmanNerdMathWorkouts.Shared.Enums;
 using MarkWildmanNerdMathWorkouts.Shared.ExcerciseStrategies;
@@ -26,12 +27,19 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             WeightLevel = workoutExercise.WeightLevel;
         }
 
-        public List<string> GenerateWorkoutSchedule(RecoveryExcerciseStrategy recoveryExcerciseStrategy)
+        public WorkoutExerciseNew(string name, List<WorkoutDayOfWeek> workoutDays, WeightLevel weightLevel = WeightLevel.Unknown)
+        {
+            Name = name;
+            WorkoutDays = workoutDays;
+            WeightLevel = weightLevel;
+        }
+
+        public List<string> GenerateWorkoutSchedule(RecoveryExcerciseStrategy excerciseStrategy)
         {
             var now = new DateTime(2021, 1, 1);
             const int numberOfWorkoutIncrementsToGenerate = 14;
 
-            var workoutIncrements = recoveryExcerciseStrategy.GenerateWorkoutIncrements(numberOfWorkoutIncrementsToGenerate);
+            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(numberOfWorkoutIncrementsToGenerate);
             var workoutDates = now.Next(DateCalculationKind.AndThen, numberOfWorkoutIncrementsToGenerate, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
 
             var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
@@ -42,11 +50,19 @@ namespace MarkWildmanNerdMathWorkouts.Shared.Models
             return workoutSchedules;
         }
 
-        public WorkoutExerciseNew(string name, List<WorkoutDayOfWeek> workoutDays, WeightLevel weightLevel = WeightLevel.Unknown)
+        public List<string> GenerateWorkoutSchedule(TenSetsTenRepsToTwentyRepsThenIncreaseWeightExcerciseStrategy excerciseStrategy)
         {
-            Name = name;
-            WorkoutDays = workoutDays;
-            WeightLevel = weightLevel;
+            var now = new DateTime(2021, 1, 1);
+
+            var workoutIncrements = excerciseStrategy.GenerateWorkoutIncrements(new Weight(35, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds), new List<Weight> { new Weight(35, WeightUnit.Pounds), new Weight(53, WeightUnit.Pounds), new Weight(70, WeightUnit.Pounds) });
+            var workoutDates = now.Next(DateCalculationKind.AndThen, workoutIncrements.Count, WorkoutDays.Select(a => a.DayOfWeek).ToArray());
+
+            var workoutSchedules = workoutIncrements.Zip(workoutDates, (wi, wd) =>
+            {
+                return $"{wd.ToString("dd/MM/yyyy")}|{wi}|";
+            }).ToList();
+
+            return workoutSchedules;
         }
 
         public override string ToString()
