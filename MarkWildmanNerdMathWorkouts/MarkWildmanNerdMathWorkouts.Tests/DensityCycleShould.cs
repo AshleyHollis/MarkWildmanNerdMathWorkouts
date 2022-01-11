@@ -11,10 +11,16 @@ namespace MarkWildmanNerdMathWorkouts.Tests
 {
     public class DensityCycleShould
     {
-        [Fact]
-        public void Correctly_Create_5_WorkoutIncrements()
+        /*
+            Kettlebell Snatch Nerd Math part 2 - density cycle
+            https://www.youtube.com/watch?v=HuNB0kfiUXk&t=310s
+        */
+        [Theory]
+        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 10, 5, 7824, true)]
+        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 20, 10, 15648, true)]
+        public void Correctly_Create_WorkoutIncrements(int weight, Shared.Enums.WeightUnit weightUnit, int volumeCycleSets, int volumeCycleReps, int targetReps, int expectedCount, int expectedTotalWorkCapacity, bool isBilateral)
         {
-            var densityCycle = new DensityCycle(new Weight(16, Shared.Enums.WeightUnit.Kilograms), 20, 5, 10, true);
+            var densityCycle = new DensityCycle(new Weight(weight, weightUnit), volumeCycleSets, volumeCycleReps, targetReps, true);
             var workouts = new List<WorkoutIncrement>();
             WorkoutIncrement workoutIncrement = null;
             
@@ -25,26 +31,8 @@ namespace MarkWildmanNerdMathWorkouts.Tests
                 workouts.Add(workoutIncrement);
             }
 
-            workouts.Should().HaveCount(5);
-            workouts.Sum(a => a.WorkCapacity.Weight.Mass).Should().Be(7824);
-        }
-
-        [Fact]
-        public void Correctly_Create_10_WorkoutIncrements()
-        {
-            var densityCycle = new DensityCycle(new Weight(16, Shared.Enums.WeightUnit.Kilograms), 20, 5, 20, true);
-            var workouts = new List<WorkoutIncrement>();
-            WorkoutIncrement workoutIncrement = null;
-
-
-            while (workoutIncrement?.IsEndOfCycle != true)
-            {
-                workoutIncrement = densityCycle.Next();
-                workouts.Add(workoutIncrement);
-            }
-
-            workouts.Should().HaveCount(10);
-            workouts.Sum(a => a.WorkCapacity.Weight.Mass).Should().Be(15648);
+            workouts.Should().HaveCount(expectedCount);
+            workouts.Sum(a => a.WorkCapacity.Weight.Mass).Should().Be(expectedTotalWorkCapacity);
         }
     }
 }
