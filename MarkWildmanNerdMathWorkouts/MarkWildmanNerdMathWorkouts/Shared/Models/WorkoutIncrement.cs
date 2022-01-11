@@ -7,6 +7,7 @@
         public readonly int Reps;
         public readonly int Sets;
         public readonly TimeSpan TUT;
+        public readonly bool IsEndOfCycle;
 
         public int TotalReps => Sets * Reps;
         public WorkCapacity WorkCapacity
@@ -27,18 +28,20 @@
             Title = title;
         }
 
-        public WorkoutIncrement(Weight weight, int sets, int reps)
+        public WorkoutIncrement(Weight weight, int sets, int reps, bool isEndOfCycle = false)
         {
             Weight = weight;
             Sets = sets;
             Reps = reps;
+            IsEndOfCycle = isEndOfCycle;
         }
 
-        public WorkoutIncrement(Weight weight, int sets, TimeSpan tut)
+        public WorkoutIncrement(Weight weight, int sets, TimeSpan tut, bool isEndOfCycle = false)
         {
             Weight = weight;
             Sets = sets;
             TUT = tut;
+            IsEndOfCycle = isEndOfCycle;
         }
 
         public override string ToString()
