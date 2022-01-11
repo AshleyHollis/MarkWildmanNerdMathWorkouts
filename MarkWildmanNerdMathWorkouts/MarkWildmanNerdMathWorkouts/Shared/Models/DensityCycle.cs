@@ -31,9 +31,9 @@
 
             _currentSets = nextSets;
 
-            if (_currentReps == _targetReps) return new WorkoutIncrement(_weight, _currentSets, _currentReps, true);
+            if (_currentReps == _targetReps) return new WorkoutIncrement(_weight, _currentSets, _currentReps, true, _isBilateral);
 
-            return new WorkoutIncrement(_weight, _currentSets, _currentReps, false);
+            return new WorkoutIncrement(_weight, _currentSets, _currentReps, false, _isBilateral);
         }
 
         private int GetNextSets(int reps)

@@ -16,8 +16,8 @@ namespace MarkWildmanNerdMathWorkouts.Tests
             https://www.youtube.com/watch?v=HuNB0kfiUXk&t=310s
         */
         [Theory]
-        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 10, 5, 7824, true)]
-        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 20, 10, 15648, true)]
+        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 10, 5, 15648, true)]
+        [InlineData(16, Shared.Enums.WeightUnit.Kilograms, 20, 5, 20, 10, 31296, true)]
         public void Correctly_Create_WorkoutIncrements(int weight, Shared.Enums.WeightUnit weightUnit, int volumeCycleSets, int volumeCycleReps, int targetReps, int expectedCount, int expectedTotalWorkCapacity, bool isBilateral)
         {
             var densityCycle = new DensityCycle(new Weight(weight, weightUnit), volumeCycleSets, volumeCycleReps, targetReps, true);

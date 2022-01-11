@@ -8,6 +8,7 @@
         public readonly int Sets;
         public readonly TimeSpan TUT;
         public readonly bool IsEndOfCycle;
+        public readonly bool IsBilateral;
 
         public int TotalReps => Sets * Reps;
         public WorkCapacity WorkCapacity
@@ -15,11 +16,12 @@
             get
             {
                 if (TUT != TimeSpan.Zero)
-                {
+                {                    
                     return new WorkCapacity(new TimeSpan(Sets * TUT.Ticks));
                 }
 
-                return new WorkCapacity(new Weight(Sets * Reps * Weight.Mass, Weight.Unit));
+                var workCapacityWeight = IsBilateral ? (Sets * Reps * Weight.Mass) * 2 : Sets * Reps * Weight.Mass;
+                return new WorkCapacity(new Weight(workCapacityWeight, Weight.Unit));
             }
         }
 
@@ -28,12 +30,13 @@
             Title = title;
         }
 
-        public WorkoutIncrement(Weight weight, int sets, int reps, bool isEndOfCycle = false)
+        public WorkoutIncrement(Weight weight, int sets, int reps, bool isEndOfCycle = false, bool isBilateral = false)
         {
             Weight = weight;
             Sets = sets;
             Reps = reps;
             IsEndOfCycle = isEndOfCycle;
+            IsBilateral = isBilateral;
         }
 
         public WorkoutIncrement(Weight weight, int sets, TimeSpan tut, bool isEndOfCycle = false)
@@ -50,7 +53,7 @@
 
             if (TUT != TimeSpan.Zero) return $"{Weight} X {Sets} X {TUT} = {WorkCapacity}";
 
-            return $"{Weight} X {Sets} X {Reps} = {WorkCapacity}";
+            return $"{Weight} X {Sets} X {(IsBilateral ? $"{Reps}/{Reps}" : Reps)} = {WorkCapacity}";
         }
     }
 }
