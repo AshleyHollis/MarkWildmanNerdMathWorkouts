@@ -1,0 +1,34 @@
+﻿using FluentAssertions;
+using MarkWildmanNerdMathWorkouts.Application.Enums;
+using MarkWildmanNerdMathWorkouts.Application.Features.Workouts;
+using Xunit;
+
+namespace MarkWildmanNerdMathWorkouts.Tests
+{
+    public class WorkoutExerciseShould
+    {
+        /*
+            Nerd Math for Kettlebells - determining Reverse Ladder Equivalent sets and reps for different weight
+            https://www.youtube.com/watch?v=xzNqgTOPKXc
+        */ 
+        [Theory]
+        [InlineData(16, WeightUnit.Kilograms, 5, 5, 2400, 20, 3, "20 kgs x 10 x 3")]
+        [InlineData(16, WeightUnit.Kilograms, 5, 5, 2400, 20, 4, "20 kgs x 6 x 4")]
+        [InlineData(16, WeightUnit.Kilograms, 5, 5, 2400, 20, 5, "20 kgs x 4 x 5")]
+        public void Calculate_Correct_NextWorkSet_Using_NewWeight(int currentWeight, WeightUnit weightUnit, int sets, int rungs, int currentWorkCapacity, int newWeight, int newRungCount, string expected)
+        {
+            // Arrange
+            var reverseLadder = new ReverseLadder(rungs);
+            var workoutExercise = new WorkoutExercise();
+            var workPerformed = new WorkPerformed() { Sets = sets, Reps = reverseLadder.TotalReps, Weight = new Weight(currentWeight, weightUnit) };
+
+            // Act
+            workoutExercise.WorkPerformed.Add(workPerformed);
+            var nextWorkSet = workoutExercise.CaculateNextExerciseUsingNewWeight(currentWorkCapacity, new Weight(newWeight, weightUnit), newRungCount);
+
+
+            // Assert
+            nextWorkSet.Should().Be(expected);
+        }
+    }
+}

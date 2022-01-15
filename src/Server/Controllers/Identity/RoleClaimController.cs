@@ -5,7 +5,7 @@ using MarkWildmanNerdMathWorkouts.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MarkWildmanNerdMathWorkouts.Server.Controllers
+namespace MarkWildmanNerdMathWorkouts.Server.Controllers.Identity
 {
     [Route("api/identity/roleClaim")]
     [ApiController]

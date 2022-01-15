@@ -1,10 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>MarkWildmanNerdMathWorkouts.Application</RootNamespace>
     <AssemblyName>MarkWildmanNerdMathWorkouts.Application</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.de.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.en.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.es.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.fr.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.id.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.it.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.km.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.ru.resources" />
+    <None Remove="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.sv.resources" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.de.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.en.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.es.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.fr.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.id.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.it.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.km.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.ru.resources" />
+    <EmbeddedResource Include="Resources\Validators\Features\ExtendedAttributes\Commands\AddEdit\AddEditExtendedAttributeCommandValidatorLocalization.sv.resources" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />

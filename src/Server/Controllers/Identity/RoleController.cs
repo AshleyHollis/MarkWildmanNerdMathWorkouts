@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MarkWildmanNerdMathWorkouts.Server.Controllers
+namespace MarkWildmanNerdMathWorkouts.Server.Controllers.Identity
 {
     [Route("api/identity/role")]
     [ApiController]
