@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "blazorhero",
+      //"composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
+      "composeLaunchUrl": "https://localhost:{ServicePort}",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "blazorhero": "StartDebugging",
+        "db": "StartWithoutDebugging"
+      }
+    }
+  }
+}
